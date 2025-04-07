@@ -26,4 +26,8 @@ int main() {
     server_addr.sin_addr.s_addr = INADDR_ANY;
     // 네트워크 전송용으로 port번호 변환
     server_addr.sin_port = htons(PORT);
+
+    // bind : 소켓을 주소(IP + PORT)에 연결
+    // bind (소켓, 주소 구조체 주소, 구조체 크기)
+    bind(server_fd, (struct sockaddr*)&server_addr, sizeof(server_addr));
 }
