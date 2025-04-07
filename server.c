@@ -54,6 +54,13 @@ int main() {
         memset(buffer, 0, sizeof(buffer));
         // 클라이언트의 소켓에서 버퍼로 데이터 저장
         read(client_fd, buffer, sizeof(buffer));
+
+        // client의 종료
+        if (strncmp(buffer, "exit", 4) == 0) {
+            printf("Client Disconnected");
+            break;
+        }
+
         printf("Client: %s\n", buffer);
 
         // 서버에서 데이터 전송
@@ -63,6 +70,13 @@ int main() {
         // 입력을 buffer에 저장
         // 버퍼의 주소, 최대 읽을 문자 수, 입력 스트림
         fgets(buffer, sizeof(buffer), stdin);
+
+        // 종료 로직
+        if (strncmp(buffer, "exit", 4) == 0) {
+            write(client_fd, buffer, strlen(buffer));
+            break;
+        }
+
         // 데이터 전송
         // 보낼 대상, 버퍼, 버퍼 길이
         write(client_fd, buffer, strlen(buffer));

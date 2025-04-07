@@ -33,12 +33,27 @@ int main() {
         memset(buffer, 0, sizeof(buffer));
         // 입력을 버퍼에 저장
         fgets(buffer, sizeof(buffer), stdin);
+
+        // exit 입력시 채팅 종료
+        if (strncmp(buffer, "exit", 4) == 0) {
+            write(sock, buffer, strlen(buffer));
+            break;
+        }
+
+
         // 데이터 전송
         write(sock, buffer, strlen(buffer));
 
         memset(buffer, 0, sizeof(buffer));
         // 서버로부터 데이터 저장
         read(sock, buffer, sizeof(buffer));
+        
+        // 서버의 종료
+        if (strncmp(buffer, "exit", 4) == 0) {
+            printf("Server Disconnected");
+            break;
+        }
+        
         printf("Server: %s\n", buffer);
     }
 
