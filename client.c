@@ -28,7 +28,7 @@ int main() {
     printf("Connected\n");
 
     while(1) {
-        printf("Client: ");
+        printf("\nClient: ");
         // buffer 초기화
         memset(buffer, 0, sizeof(buffer));
         // 입력을 버퍼에 저장
@@ -53,7 +53,7 @@ int main() {
             printf("Server Disconnected");
             break;
         }
-        
+
         printf("Server: %s\n", buffer);
     }
 

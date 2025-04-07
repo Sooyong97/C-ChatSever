@@ -64,7 +64,7 @@ int main() {
         printf("Client: %s\n", buffer);
 
         // 서버에서 데이터 전송
-        printf("Server: ");
+        printf("\nServer: ");
         // 버퍼 초기화
         memset(buffer, 0, sizeof(buffer));
         // 입력을 buffer에 저장
